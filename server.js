@@ -3,6 +3,7 @@ const bodyParser =require("body-parser");
 const morgan =require("morgan");
 const dotenv =require("dotenv");
 const connectDB = require('./config/db.config');
+const authRouter = require('./routes/auth-route');
 
 const app = express();
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(morgan('tiny'));
 app.get('/', (req, res) => {
     res.status(200).json("🚀 API is running");
 });
+app.use('/', authRouter);
 
 // LAUNCH
 const port = process.env.PORT;
